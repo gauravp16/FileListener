@@ -2,7 +2,7 @@ var module = require("./index.js");
 
 var custom = {
 	subscribeFileListener : function(listener){
-		listener.on('fileReceived', function(){
+		listener.on('fileAvailable', function(){
 			console.log('File received!!!!!');
 		});
 	}
@@ -25,7 +25,7 @@ var specification = module.createSpecification().
 					}
 				}).
 				doCustom(custom).
-				route('C:/Users/Gaurav', false);
+				route('C:/Users/Gaurav', {removeOriginal:true}, {timestamp:true});
 
 var listener = module.build(specification);
 listener.start();

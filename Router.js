@@ -1,20 +1,26 @@
 var fs = require('fs.extra');
+var util = require('./util.js');
 
-function Router(from, to, removeFromSource){
+function Router(from, to, removeOriginal, timestamp){
 	this.from = from;
 	this.to = to;
-	this.removeFromSource = removeFromSource;
+	this.removeOriginal = removeOriginal;
+	this.timestamp = timestamp;
 }
 
 Router.prototype = {
 	route : function(){
-		if(this.removeFromSource)
-			fs.move(this.from, this.to, function(err){
+		var destination = this.to;
+		if(typeof(this.timestamp) != undefined && this.timestamp.timestamp === true)
+			destination = util.timestamped(this.to);
+
+		if(typeof(this.removeOriginal) != undefined && this.removeOriginal.removeOriginal === true)
+			fs.move(this.from, destination, function(err){
 				if(err)
 					throw err;
 			});
 		else
-			fs.copy(this.from, this.to, {replace: true}, function(err){
+			fs.copy(this.from, destination, {replace: true}, function(err){
 				if(err)
 					throw err;
 			});		
@@ -22,17 +28,15 @@ Router.prototype = {
 
 	subscribeFileListener : function(listener){
 		var router = this;
-		listener.on('fileReceived', function(){
+		listener.on('fileAvailable', function(){
 			router.route();
 		});
 	}
 };
 
-
-
 var router = {
-	create : function(from, to, removeFromSource){
-		return new Router(from, to, removeFromSource);
+	create : function(from, to, removeOriginal, timestamp){
+		return new Router(from, to, removeOriginal, timestamp);
 	}
 };
 

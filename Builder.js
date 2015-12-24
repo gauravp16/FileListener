@@ -1,4 +1,6 @@
 const Listener = require('./Listener.js');
+const util = require('./util.js')
+const fsExtra = require('fs.extra');
 
 function Builder(){}
 
@@ -12,12 +14,28 @@ Builder.prototype = function(){
 		}
 	}
 
+	function registerMandatorySubscribers(listener, specification){
+		listener.on('fileReceived', function(){
+			fsExtra.copy(specification.completeSourceFilePath(), util.combine('C:/temp', specification.pattern), {replace:true}, function(err){
+				if(err)
+					throw err;
+				listener.emit('fileAvailable', {});
+			});
+			//util.copyFile(specification.completeSourceFilePath(), util.combine('C:/temp', specification.pattern));	
+		});
+	}
+
 	return {
 		build : function(specification){
-			//if(specification === null || specification === undefined || !specification.isValid()) 
-			var listener = Listener.create(specification);
-			registerSubscribers(listener, specification);
-			return listener;
+			if(!specification) 
+				throw new Error('specification cannot be null or undefined');
+
+			if(specification.isValid()){
+				var listener = Listener.create(specification);
+				registerMandatorySubscribers(listener, specification);
+				registerSubscribers(listener, specification);
+				return listener;
+			}
 		}	
 	};
 }();

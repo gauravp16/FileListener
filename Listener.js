@@ -18,9 +18,7 @@ function listen(listener){
 }
 
 Listener.prototype.start = function(){
-	if(this.specification.isValid()){
-		setInterval(listen, this.specification.interval, this);
-	}
+	setInterval(listen, this.specification.interval, this);
 };
 
 module.exports = {
