@@ -1,5 +1,6 @@
-var email = require('emailjs/email');
-var util = require('./util.js');
+const email = require('emailjs/email');
+const util = require('./util.js');
+const os = require('os');
 
 function Mail(args){
 	this.to = args.mail.to;
@@ -50,7 +51,7 @@ Mailer.prototype.send = function(path){
 Mailer.prototype.subscribeFileListener = function(listener){
 		var mailer = this;
 		listener.on('fileAvailable', function(){
-			mailer.send(util.combine('C:/temp', listener.specification.pattern));
+			mailer.send(util.combine(os.tmpdir(), listener.specification.pattern));
 		});
 };
 

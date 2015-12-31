@@ -1,5 +1,5 @@
-var fs = require('fs');
-var fsExtra = require('fs.extra');
+const fs = require('fs');
+const fsExtra = require('fs.extra');
 
 module.exports = function(){
 	return {

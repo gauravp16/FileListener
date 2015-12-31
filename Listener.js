@@ -1,8 +1,9 @@
-var fs = require('fs');
+const fs = require('fs');
 const EventEmitter = require("events").EventEmitter;
 const util = require("util");
 
 function Listener(specification){
+	this.poller = null;
 	this.specification = specification;
 	EventEmitter.call(this);
 }
@@ -18,7 +19,11 @@ function listen(listener){
 }
 
 Listener.prototype.start = function(){
-	setInterval(listen, this.specification.interval, this);
+ 	this.poller = setInterval(listen, this.specification.interval, this);
+};
+
+Listener.prototype.stop = function(){
+	clearInterval(this.poller);
 };
 
 module.exports = {

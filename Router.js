@@ -1,5 +1,5 @@
-var fs = require('fs.extra');
-var util = require('./util.js');
+const fs = require('fs.extra');
+const util = require('./util.js');
 
 function Router(from, to, removeOriginal, timestamp){
 	this.from = from;

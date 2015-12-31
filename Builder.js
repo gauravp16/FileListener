@@ -1,6 +1,7 @@
 const Listener = require('./Listener.js');
 const util = require('./util.js')
 const fsExtra = require('fs.extra');
+const os = require('os');
 
 function Builder(){}
 
@@ -16,7 +17,7 @@ Builder.prototype = function(){
 
 	function registerMandatorySubscribers(listener, specification){
 		listener.on('fileReceived', function(){
-			fsExtra.copy(specification.completeSourceFilePath(), util.combine('C:/temp', specification.pattern), {replace:true}, function(err){
+			fsExtra.copy(specification.completeSourceFilePath(), util.combine(os.tmpdir(), specification.pattern), {replace:true}, function(err){
 				if(err)
 					throw err;
 				listener.emit('fileAvailable', {});
