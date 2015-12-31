@@ -26,7 +26,7 @@ var specification = module.createSpecification().
 					}
 				}).
 				doCustom(custom).
-				route('doesnotexist', {removeOriginal:false}, {timestamp:false});
+				route('destination', {removeOriginal:false}, {timestamp:false});
 ```
 ### Build and start listener
 
