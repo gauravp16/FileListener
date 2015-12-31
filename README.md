@@ -36,3 +36,6 @@ The next step is to build and start listener.
 var listener = module.build(specification);
 listener.start();
 ```
+
+## License
+Licensed under MIT
