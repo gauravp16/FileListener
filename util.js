@@ -26,8 +26,12 @@ module.exports = function(){
 		},
 
 		timestamped: function(arg){
-			timestamp = new Date().getTime().toString();
-			return  arg+timestamp;
+			var dir = path.dirname(arg);
+			var extn = path.extname(arg);
+			var file = path.basename(arg, extn);
+			var timestamp = new Date().getTime().toString();
+						
+			return path.join(dir,file+timestamp+extn);
 		},
 
 		createReadStream: function(path){
