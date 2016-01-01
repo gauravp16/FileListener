@@ -1,5 +1,5 @@
 ## Installation
-npm install --save filelistener
+npm install file-listener
 
 ## Usage
 File listener watches a directory for a file and once the file is available in the folder, it allows for certain tasks to be executed like sending the file as an attachment in a mail, placing the file into a different folder (timestamped if required) or any other user defined task.
@@ -8,7 +8,7 @@ File listener watches a directory for a file and once the file is available in t
 
 The first step is to create a listener configuration.
 ```javascript
-const module = require('FileListener');
+const module = require('file-listener');
 
 //any custom task
 var custom = {

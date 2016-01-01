@@ -1,5 +1,5 @@
 {
-  "name": "FileListener",
+  "name": "file-listener",
   "version": "1.0.0",
   "description": "Watches for a file in a directory and allows for tasks like mail, route to a different folder or any custom task",
   "main": "index.js",
