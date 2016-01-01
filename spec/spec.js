@@ -44,7 +44,7 @@ describe('File listener specification', function(){
 		it('should throw error if the listenAt location is invalid', function(){
 			var specification = module.createSpecification().
 					listenAt('doesnotexist').
-					forFiles('testFileListener.txt').
+					forFile('testFileListener.txt').
 					every(5000).
 					route('destination', false);
 
@@ -54,7 +54,7 @@ describe('File listener specification', function(){
 		it('should throw error if the file name is invalid', function(){
 			var specification = module.createSpecification().
 					listenAt('source').
-					forFiles('doesnotexist.txt').
+					forFile('doesnotexist.txt').
 					every(5000).
 					route('destination', false);
 			expect(function(){module.build(specification);}).toThrowError('not a valid source file');
@@ -63,7 +63,7 @@ describe('File listener specification', function(){
 		it('should throw error if the interval is invalid', function(){
 			var specification = module.createSpecification().
 					listenAt('./source').
-					forFiles('testFileListener.txt').
+					forFile('testFileListener.txt').
 					route('./destination', false);
 			expect(function(){module.build(specification);}).toThrowError('not a valid interval');
 		});
@@ -86,7 +86,7 @@ describe('File listener specification', function(){
 			spyOn(custom, 'touch');
 			var specification = module.createSpecification().
 					listenAt('source').
-					forFiles('testFileListener.txt').
+					forFile('testFileListener.txt').
 					every(1000).
 					doCustom(custom).
 					route('destination', {removeOriginal:true}, {timestamp:false});

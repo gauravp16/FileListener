@@ -21,7 +21,7 @@ var custom = {
 
 var specification = module.createSpecification().
 				listenAt('source').
-				forFiles('testFileListener.txt').
+				forFile('testFileListener.txt').
 				every(4000).
 				mail({
 					'smtpHost' : 'smtp.gmail.com',

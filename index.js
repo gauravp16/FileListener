@@ -14,7 +14,7 @@ Specification.prototype = function(){
 			return this;	
 		},
 
-		forFiles : function(pattern){
+		forFile : function(pattern){
 			this.pattern = pattern;
 			return this;
 		},
