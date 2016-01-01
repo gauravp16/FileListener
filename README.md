@@ -13,7 +13,7 @@ const module = require('FileListener');
 //any custom task
 var custom = {
  	subscribeFileListener : function(listener){
- 		listener.on('fileReceived', function(){
+ 		listener.on('fileAvailable', function(){
  			console.log('File received!!!!!');
  		});
  	}
