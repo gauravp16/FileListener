@@ -47,5 +47,18 @@ var listener = module.build(specification);
 listener.start();
 ```
 
+### Custom task
+
+For any custom task, the consumer object must have a method 'subscribeFileListener', which subscribes to the 'fileAvailable' event emitted by the listener object, available as an input argument.
+
+```javascript
+var custom = {
+ 	subscribeFileListener : function(listener){
+ 		listener.on('fileAvailable', function(){
+ 			console.log('File received!!!!!');
+ 		});
+ 	}
+ };
+```
 ## License
 Licensed under MIT
