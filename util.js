@@ -1,5 +1,5 @@
-const fs = require('fs');
-const fsExtra = require('fs.extra');
+const fs = require('fs.extra');
+const path = require('path');
 
 module.exports = function(){
 	return {
@@ -22,7 +22,7 @@ module.exports = function(){
 		},
 
 		combine : function(pathOne, pathTwo){
-			return pathOne + '/' + pathTwo;
+			return path.join(pathOne, pathTwo);
 		},
 
 		timestamped: function(arg){

@@ -1,6 +1,7 @@
 const email = require('emailjs/email');
 const util = require('./util.js');
 const os = require('os');
+const pathModule = require('path');
 
 function Mail(args){
 	this.to = args.mail.to;
@@ -37,7 +38,7 @@ Mailer.prototype.send = function(path){
 		   	subject: this.mail.subject,
 		   	attachment: 
 		   	[
-		   		{stream:util.createReadStream(path)}
+		   		{stream:util.createReadStream(path), name:pathModule.basename(path)}
 		   	]
 		};
 	
