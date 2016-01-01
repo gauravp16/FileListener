@@ -22,7 +22,6 @@ Builder.prototype = function(){
 					throw err;
 				listener.emit('fileAvailable', {});
 			});
-			//util.copyFile(specification.completeSourceFilePath(), util.combine('C:/temp', specification.pattern));	
 		});
 	}
 

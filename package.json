@@ -13,7 +13,9 @@
   "keywords": [
     "filelistener",
     "listener",
-    "router"
+    "router",
+    "mailer",
+    "watcher"
   ],
   "author": {
     "name": "Gaurav Pathak",
